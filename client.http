@@ -29,6 +29,6 @@ Content-Type: application/json
 Authorization: Bearer {{create_session.response.body.access_token}}
 
 {
-  "title": "How to create a new account?",
-  "body": "I'm trying to create a new account but I can't find the option to do it. Can someone help me?"
+  "title": "How to adasd a new account?",
+  "content": "asdasd?"
 }
