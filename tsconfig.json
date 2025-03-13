@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "module": "Node16",
+    "module": "commonjs",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2022",
+    "target": "ES2023",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -17,9 +17,7 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    "moduleResolution": "node16",
-    "strict": true,
-    "lib": ["ES2023"],
+    "strict": false,
     "paths": {
       "@/*": ["./src/*"]
     },
