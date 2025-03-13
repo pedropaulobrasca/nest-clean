@@ -29,6 +29,12 @@ Content-Type: application/json
 Authorization: Bearer {{create_session.response.body.access_token}}
 
 {
-  "title": "How to adasd a new account?",
-  "content": "asdasd?"
+  "title": "How to add a new account?",
+  "content": "I want to add a new account"
 }
+
+###
+
+# @name fetch_recents_questions
+GET {{baseUrl}}/questions?page=1
+Authorization: Bearer {{create_session.response.body.access_token}}
