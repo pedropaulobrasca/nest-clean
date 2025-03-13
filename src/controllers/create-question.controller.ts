@@ -4,6 +4,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 import { UserPayload } from 'src/auth/jwt.strategy'
 import { ZodValidationPipe } from 'src/pipes/zod-validation.pipe'
 import { PrismaService } from 'src/prisma/prisma.service'
+import { convertToSlug } from 'src/utils/slugify'
 import { z } from 'zod'
 
 const createQuestionBodySchema = z.object({
@@ -28,7 +29,7 @@ export class CreateQuestionController {
     const { title, content } = body
     const userId = user.sub
 
-    const slug = this.convertToSlug(title)
+    const slug = convertToSlug(title)
 
     await this.prisma.question.create({
       data: {
@@ -38,14 +39,5 @@ export class CreateQuestionController {
         slug,
       },
     })
-  }
-
-  private convertToSlug(title: string): string {
-    return title
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
   }
 }
