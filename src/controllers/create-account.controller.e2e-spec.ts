@@ -2,6 +2,7 @@ import { AppModule } from '@/app.module'
 import { PrismaService } from '@/prisma/prisma.service'
 import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
+import { Server } from 'http'
 import request from 'supertest'
 
 describe('Create account (E2E)', () => {
@@ -20,7 +21,8 @@ describe('Create account (E2E)', () => {
   })
 
   test('[POST] /accounts', async () => {
-    const response = await request(app.getHttpServer()).post('/accounts').send({
+    const httpServer = app.getHttpServer() as Server
+    const response = await request(httpServer).post('/accounts').send({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123asd',

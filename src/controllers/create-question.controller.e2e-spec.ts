@@ -3,6 +3,7 @@ import { PrismaService } from '@/prisma/prisma.service'
 import { INestApplication } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { Test } from '@nestjs/testing'
+import { Server } from 'http'
 import request from 'supertest'
 
 describe('Create question (E2E)', () => {
@@ -33,7 +34,8 @@ describe('Create question (E2E)', () => {
 
     const accessToken = jwt.sign({ sub: user.id })
 
-    const response = await request(app.getHttpServer())
+    const httpServer = app.getHttpServer() as Server
+    const response = await request(httpServer)
       .post('/questions')
       .set('Authorization', `Bearer ${accessToken}`)
       .send({

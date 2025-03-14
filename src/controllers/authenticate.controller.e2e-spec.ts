@@ -4,6 +4,7 @@ import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
 import { hash } from 'bcryptjs'
 import request from 'supertest'
+import type { Server } from 'http'
 
 interface ResponseAuthenticateBody {
   access_token: string
@@ -33,7 +34,8 @@ describe('Authenticate (E2E)', () => {
       },
     })
 
-    const response = await request(app.getHttpServer()).post('/sessions').send({
+    const httpServer = app.getHttpServer() as Server
+    const response = await request(httpServer).post('/sessions').send({
       email: 'johndoe@example.com',
       password: '123asd',
     })

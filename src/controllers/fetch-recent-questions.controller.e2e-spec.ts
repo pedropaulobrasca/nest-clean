@@ -3,6 +3,7 @@ import { PrismaService } from '@/prisma/prisma.service'
 import { INestApplication } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { Test } from '@nestjs/testing'
+import { Server } from 'http'
 import request from 'supertest'
 
 describe('Fetch recent questions (E2E)', () => {
@@ -56,7 +57,8 @@ describe('Fetch recent questions (E2E)', () => {
       ],
     })
 
-    const response = await request(app.getHttpServer())
+    const httpServer = app.getHttpServer() as Server
+    const response = await request(httpServer)
       .get('/questions')
       .set('Authorization', `Bearer ${accessToken}`)
       .send()
