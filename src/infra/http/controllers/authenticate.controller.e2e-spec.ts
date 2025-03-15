@@ -1,10 +1,10 @@
-import { AppModule } from '@/app.module'
-import { PrismaService } from '@/prisma/prisma.service'
+import { PrismaService } from '@/infra/prisma/prisma.service'
 import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
 import { hash } from 'bcryptjs'
 import request from 'supertest'
 import type { Server } from 'http'
+import { AppModule } from '@/infra/app.module'
 
 interface ResponseAuthenticateBody {
   access_token: string
